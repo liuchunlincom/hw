@@ -22,9 +22,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="hw-cached" />
         <module name="hw-services" />
         <module name="hw-web" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hw" target="1.7" />
+      <module name="hw-cached" target="1.7" />
+      <module name="hw-services" target="1.7" />
+      <module name="hw-web" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hw-services</artifactId>
+    <artifactId>hw-cached</artifactId>
     <packaging>jar</packaging>
 
-    <name>hw-services</name>
+    <name>hw-cached</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -23,6 +23,16 @@
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package com.lcl.crm;
+package com.lcl.hw.framework;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

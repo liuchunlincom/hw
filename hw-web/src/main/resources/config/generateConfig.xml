@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+       <classPathEntry location="E:/.m2/repository/postgresql/postgresql/9.1-901.jdbc4/postgresql-9.1-901.jdbc4.jar" />
+       <context id="DB2Tables" targetRuntime="MyBatis3">
+              <commentGenerator>
+                     <property name="suppressAllComments" value="true"/>
+              </commentGenerator>
+              <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                              connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:lcl"
+                              userId="test" password="lcl">
+              </jdbcConnection>
+              <javaTypeResolver>
+                     <property name="forceBigDecimals" value="false"/>
+              </javaTypeResolver>
+
+              <javaModelGenerator targetPackage="com.lcl.hw.domain" targetProject="src/main/java">
+                     <property name="enableSubPackages" value="true"/>
+                     <property name="trimStrings" value="true"/>
+              </javaModelGenerator>
+
+              <sqlMapGenerator targetPackage="sqlmap" targetProject="src/main/resources/com/lcl/hw/mapper">
+                     <property name="enableSubPackages" value="true"/>
+              </sqlMapGenerator>
+
+              <javaClientGenerator type="XMLMAPPER" targetPackage="com.lcl.hw.mapper" targetProject="src/main/java">
+                     <property name="enableSubPackages" value="true"/>
+              </javaClientGenerator>
+              <table  tableName="REGISTER" domainObjectName="Register" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false">
+
+              </table>
+       </context>
+</generatorConfiguration>
