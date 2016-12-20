@@ -13,6 +13,6 @@ public class TestController {
     @RequestMapping("main")
     public String helloWorld(){
         System.out.println("helleWorld!");
-        return "index";
+        return "/index.jsp";
     }
 }

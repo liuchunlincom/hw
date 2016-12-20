@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="citicbank-core-1.6-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hw-web/src/main/webapp/lib/citicbank-core-1.6-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

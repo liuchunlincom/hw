@@ -80,4 +80,11 @@ public final class RedisUtil {
             jedisPool.returnResource(jedis);
         }
     }
+
+    public static void main(String[] args) {
+        String info = "123456".substring(1,1);
+        System.out.println(info);
+
+    }
+
 }

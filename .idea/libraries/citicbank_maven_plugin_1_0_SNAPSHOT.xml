@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="citicbank-maven-plugin-1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hw-web/src/main/webapp/lib/citicbank-maven-plugin-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
