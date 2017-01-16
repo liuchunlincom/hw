@@ -3,5 +3,6 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/hw-cached" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hw-services" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hw-web/src/main/java/com/lcl/hw/utils/quartz/UserCheckJob.java" charset="UTF-8" />
   </component>
 </project>

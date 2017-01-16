@@ -5,22 +5,23 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-                        http://www.springframework.org/schema/context    
-                        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                         http://www.springframework.org/schema/tx
-                        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
                         http://www.springframework.org/schema/aop
-                        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-    <!-- 自动扫描 -->
-    <context:component-scan base-package="com.lcl.hw" >
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:exclude-filter>
-    </context:component-scan>
+                        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
     <!-- 引入配置文件 -->
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:config/oracle.properties" />
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!--<property name="location" value="classpath:config/oracle.properties" />-->
+        <property name="locations">
+            <list>
+                <value>classpath:config/oracle.properties</value>
+                <value>classpath:config/log.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8" />
     </bean>
+
 
     <!-- 数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -43,7 +44,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="typeAliasesPackage" value="com.lcl.hw.domain"/>
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:test/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath:com/lcl/hw/mapper/*Mapper.xml"/>
     </bean>
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean id="MapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">

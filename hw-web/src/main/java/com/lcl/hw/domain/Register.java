@@ -19,7 +19,7 @@ public class Register {
         this.name = name;
     }
 
-    public String getLoginid(String 刘纯林) {
+    public String getLoginid() {
         return loginid;
     }
 

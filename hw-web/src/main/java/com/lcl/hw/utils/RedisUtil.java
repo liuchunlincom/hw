@@ -12,7 +12,7 @@ import redis.clients.jedis.JedisPoolConfig;
 public final class RedisUtil {
 
     //Redis服务器IP
-    private static String ADDR = "192.168.0.100";
+    private static String ADDR = "127.0.0.1";
 
     //Redis的端口号
     private static int PORT = 6379;
@@ -82,9 +82,9 @@ public final class RedisUtil {
     }
 
     public static void main(String[] args) {
-        String info = "123456".substring(1,1);
-        System.out.println(info);
-
+        Jedis jedis = RedisUtil.getJedis();
+        jedis.append("xiu","耍流氓");
+        System.out.println(jedis.get("xiu"));
     }
 
 }

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.lcl.hw:hw-services:2.9.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/lcl/hw/hw-services/2.9.0/hw-services-2.9.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/lcl/hw/hw-services/2.9.0/hw-services-2.9.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/lcl/hw/hw-services/2.9.0/hw-services-2.9.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
