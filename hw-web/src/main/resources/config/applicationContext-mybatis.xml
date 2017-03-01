@@ -17,6 +17,7 @@
             <list>
                 <value>classpath:config/oracle.properties</value>
                 <value>classpath:config/log.properties</value>
+                <value>classpath:config/redis.properties</value>
             </list>
         </property>
         <property name="fileEncoding" value="UTF-8" />

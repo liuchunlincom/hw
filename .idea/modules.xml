@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/hw.iml" filepath="$PROJECT_DIR$/hw.iml" />
       <module fileurl="file://$PROJECT_DIR$/hw-cached/hw-cached.iml" filepath="$PROJECT_DIR$/hw-cached/hw-cached.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hw-services/hw-services.iml" filepath="$PROJECT_DIR$/hw-services/hw-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hw-core/hw-core.iml" filepath="$PROJECT_DIR$/hw-core/hw-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/hw-web/hw-web.iml" filepath="$PROJECT_DIR$/hw-web/hw-web.iml" />
     </modules>
   </component>

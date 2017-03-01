@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 public class UserCheckJob {
     private Logger log = LoggerFactory.getLogger(UserCheckJob.class);
     public void runTask(){
-        System.out.println("===========runTask()");
         log.info("===========runTask()");
     }
 }

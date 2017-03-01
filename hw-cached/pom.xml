@@ -9,6 +9,7 @@
 
     <artifactId>hw-cached</artifactId>
     <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
 
     <name>hw-cached</name>
     <url>http://maven.apache.org</url>

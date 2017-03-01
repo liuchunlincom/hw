@@ -13,7 +13,6 @@
 		<h1 class="main-title hide">遇见</h1>
 		<h2 class="sub-title">每天遇见更好的自己</h2>
 	</div>
-
 	<div class="cont-main clearfix">
 		<div class="index-tab">
 			<div class="index-slide-nav">
@@ -43,7 +42,7 @@
 			<button type="submit" class="login-btn register-btn" id="button">登录</button>
 		</div>
 
-		<#--<div class="remember clearfix">
+		<!--<div class="remember clearfix">
 			<label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox" name="remember-me" id="remember-me" class="remember-mecheck" checked>记住我</label>
 			<label class="forgot-password">
 				<a href="#">忘记密码？</a>
@@ -92,7 +91,9 @@
 			async:true,
 			dataType:"json",
 			success:function(data){
-
+				if(data!=null&&data.success==true){
+					window.location.href="/page/index.html"
+				}
 			},
 			error:function(e){
 

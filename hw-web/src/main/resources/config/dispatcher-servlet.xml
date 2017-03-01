@@ -6,16 +6,12 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/aop
-		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-		http://www.springframework.org/schema/beans 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.0.xsd
 		http://www.springframework.org/schema/mvc 
-		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-		http://www.springframework.org/schema/tx 
-		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 
     <!-- 开启springmvc注解驱动 RequestMappingHandlerMapping和RequestMappingHandlerAdapter -->
@@ -24,7 +20,7 @@
     <mvc:resources mapping="/js/**" location="classpath:static/js/"/>
     <mvc:resources mapping="/css/**" location="classpath:static/css/"/>
     <mvc:resources mapping="/images/**" location="classpath:static/images/"/>
-    <!--    <mvc:resources location="//" mapping="/*.html" />-->
+    <mvc:resources mapping="/page/**" location="classpath:page/"/>
 
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
         <mvc:message-converters register-defaults="false">
@@ -48,7 +44,7 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
     <!-- 组件扫描 -->
-    <context:component-scan base-package="com.lcl.hw"><!--use-default-filters="true"-->
+    <context:component-scan base-package="com.lcl.hw">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
     </context:component-scan>
 
@@ -66,7 +62,12 @@
         </property>
     </bean>
 
-    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="contentType" value="text/html" />
+        <property name="prefix" value="/page/"></property>
+        <property name="suffix" value=".html"></property>
+    </bean>
+  <!--  <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="classpath:page/" />
         <property name="defaultEncoding" value="UTF-8" />
 
@@ -74,41 +75,44 @@
             <props>
                 <prop key="classic_compatible">true</prop>
                 <prop key="number_format">#.##</prop>
-                 <prop key="template_update_delay">50</prop><!--隔5秒检查模板是否更新-->
+                 <prop key="template_update_delay">50</prop>&lt;!&ndash;隔5秒检查模板是否更新&ndash;&gt;
                  <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
                  <prop key="template_exception_handler">ignore</prop>
             </props>
 
         </property>
-    </bean>
+    </bean>-->
 
     <!-- freemarker视图解析器 -->
-    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+ <!--   <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="suffix" value=".ftl" />
         <property name="contentType" value="text/html;charset=UTF-8" />
-        <!-- 此变量值为pageContext.request, 页面使用方法：rc.contextPath -->
+        &lt;!&ndash; 此变量值为pageContext.request, 页面使用方法：rc.contextPath &ndash;&gt;
         <property name="requestContextAttribute" value="rc" />
 
-    </bean>
-
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/"></property>
-        <property name="suffix" value=".html"></property>
-        <property name="order" value="0"></property>
-    </bean>
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/"></property>
-        <property name="suffix" value=".jsp"></property>
-        <property name="order" value="1"></property>
     </bean>-->
+
     <!-- 拦截器配置 -->
-    <!--<mvc:interceptors>
+<!--
+    <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/pc/**"/>
-            <mvc:exclude-mapping path="/pc/login/**"/>
-            <bean class="com.supermap.lcl.interceptor.InterceptorTest"></bean>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login/**"/>
+            <mvc:exclude-mapping path="/validateCode/getValidateCode"/>
+            <mvc:exclude-mapping path="/favicon.ico"/>
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.jpg"/>
+            <mvc:exclude-mapping path="/**/*.png"/>
+            <mvc:exclude-mapping path="/**/*.gif"/>
+            <mvc:exclude-mapping path="/**/*.ico"/>
+            <mvc:exclude-mapping path="/**/*.jpeg"/>
+            <mvc:exclude-mapping path="/**/*.JPEG"/>
+            <mvc:exclude-mapping path="/**/*.html"/>
+            <bean class="com.lcl.hw.utils.interceptor.AuthenticationInterceptor"></bean>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
+-->
 
 
     <!-- SpringMVC上传文件时,需配置MultipartResolver处理器 -->

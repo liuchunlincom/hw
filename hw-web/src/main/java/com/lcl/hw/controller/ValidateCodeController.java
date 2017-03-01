@@ -1,14 +1,18 @@
 package com.lcl.hw.controller;
 
+import com.lcl.hw.utils.RedisUtil;
 import com.lcl.hw.utils.RetObj;
 import com.lcl.hw.utils.ValidateCodeUtil;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -22,11 +26,20 @@ import java.util.Map;
 public class ValidateCodeController {
     @Resource
     private ValidateCodeUtil validateCodeUtil;
+    @Resource
+    private RedisUtil redisUtil;
 
     private Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
     @RequestMapping("/getValidateCode")
-    public void getValidateCode(HttpServletResponse response){
+    public void getValidateCode(HttpServletResponse response,HttpServletRequest request){
         Map map = validateCodeUtil.produceValidateCode();
+        String ip = request.getRemoteAddr();
+        if(map!=null){
+            String code = (String)map.get("code");
+            Jedis jedis = redisUtil.getJedis();
+            jedis.append("valid_"+ip,code);
+            redisUtil.returnResource(jedis);
+        }
         BufferedImage bufferedImage = (BufferedImage)map.get("pic");
         // 禁止图像缓存。
         response.setHeader("Pragma", "no-cache");

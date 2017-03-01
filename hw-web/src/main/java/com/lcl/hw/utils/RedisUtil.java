@@ -1,5 +1,8 @@
 package com.lcl.hw.utils;
 
+/*import com.lcl.hw.framework.quartz.UserCheckJob;*/
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.ShardedJedisPool;
 
 /**
@@ -9,16 +12,17 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+@Component
 public final class RedisUtil {
 
     //Redis服务器IP
-    private static String ADDR = "127.0.0.1";
+    private static String ADDR="127.0.0.1";
 
     //Redis的端口号
     private static int PORT = 6379;
 
     //访问密码
-    private static String AUTH = "admin";
+    private static String AUTH = "redis";
 
     //可用连接实例的最大数目，默认值为8；
     //如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)。
@@ -57,7 +61,7 @@ public final class RedisUtil {
      * 获取Jedis实例
      * @return
      */
-    public synchronized static Jedis getJedis() {
+    public synchronized Jedis getJedis() {
         try {
             if (jedisPool != null) {
                 Jedis resource = jedisPool.getResource();
@@ -75,16 +79,8 @@ public final class RedisUtil {
      * 释放jedis资源
      * @param jedis
      */
-    public static void returnResource(final Jedis jedis) {
-        if (jedis != null) {
-            jedisPool.returnResource(jedis);
-        }
-    }
-
-    public static void main(String[] args) {
-        Jedis jedis = RedisUtil.getJedis();
-        jedis.append("xiu","耍流氓");
-        System.out.println(jedis.get("xiu"));
+    public void returnResource(final Jedis jedis) {
+        /*UserCheckJob r;*/
     }
 
 }

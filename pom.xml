@@ -12,6 +12,7 @@
         <module>hw-web</module>
         <module>hw-services</module>
         <module>hw-cached</module>
+        <module>hw-core</module>
     </modules>
     <properties>
         <spring.version>4.0.6.RELEASE</spring.version>
@@ -22,7 +23,6 @@
     </properties>
     <!-- <dependencyManagement>-->
     <dependencies>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -155,7 +155,7 @@
     </dependencies>
     <!--</dependencyManagement>-->
     <build>
-        <finalName>hw</finalName>
+        <!--<finalName>hw</finalName>-->
         <pluginManagement>
             <plugins>
                 <!--mybatis 逆向工程插件-->
@@ -167,7 +167,6 @@
                         <verbose>true</verbose>
                         <overwrite>true</overwrite>
                         <tableNames>
-
                         </tableNames>
                     </configuration>
                 </plugin>
@@ -186,7 +185,32 @@
                         <target>1.7</target>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <uniqueVersion>false</uniqueVersion>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
+    <distributionManagement>
+        <repository>
+            <id>lcl-nexus-releases</id>
+            <name>LCL Nexus Repositiry</name>
+            <url>http://localhost:8081/repository/lcl-nexus-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>lcl-nexus-snapshots</id>
+            <name>LCL Nexus Repositiry</name>
+            <url>http://localhost:8081/repository/lcl-nexus-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

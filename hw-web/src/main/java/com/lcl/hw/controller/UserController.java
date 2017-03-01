@@ -3,11 +3,13 @@ package com.lcl.hw.controller;
 import com.lcl.hw.domain.Register;
 import com.lcl.hw.services.UserService;
 import com.lcl.hw.utils.RetObj;
+import com.lcl.hw.utils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -20,14 +22,22 @@ import javax.annotation.Resource;
 public class UserController {
     @Resource
     private UserService userService;
+
+    @Resource
+    private UserUtils userUtils;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value={"","login"})
-    public String login(Register register,Model model){
+    @ResponseBody
+    public RetObj login(Register register,Model model){
         String pw = register.getPassword();
         RetObj retObj = new RetObj();
         try {
             retObj = userService.login(register);
+            if(retObj!=null && retObj.isSuccess()){
+                userUtils.setHttpUserSession((Register)retObj.getResult());
+            }
         } catch (Exception e) {
             retObj.setSuccess(false);
             retObj.setMessage("登录异常！");
@@ -35,7 +45,7 @@ public class UserController {
         }
         logger.info(retObj.toString());
         model.addAttribute("result",retObj);
-        return "/index";
+        return retObj;
     }
 
 }
