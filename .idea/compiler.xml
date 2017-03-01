@@ -25,6 +25,7 @@
         <module name="hw-cached" />
         <module name="hw-core" />
         <module name="hw-core2" />
+        <module name="hw-utils" />
         <module name="hw-web" />
       </profile>
     </annotationProcessing>
@@ -34,6 +35,7 @@
       <module name="hw-core" target="1.7" />
       <module name="hw-core2" target="1.7" />
       <module name="hw-services" target="1.7" />
+      <module name="hw-utils" target="1.7" />
       <module name="hw-web" target="1.7" />
     </bytecodeTargetLevel>
   </component>
