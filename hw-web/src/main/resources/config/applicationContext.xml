@@ -13,17 +13,17 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:exclude-filter>
     </context:component-scan>
     <!-- 配置方法映射工厂类 -->
-    <!--<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="userCheckJob"></property>
         <property name="targetMethod" value="runTask"></property>
         <property name="concurrent" value="false"></property>
-        &lt;!&ndash; concurrent : false表示等上一个任务执行完后再开启新的任务 &ndash;&gt;
+        <!-- concurrent : false表示等上一个任务执行完后再开启新的任务 -->
     </bean>
-    &lt;!&ndash; 配置任务高度的的时间/周期 &ndash;&gt;
+    <!-- 配置任务高度的的时间/周期 -->
     <bean id="userCheckJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="jobDetail"></property>
         <property name="cronExpression" value="0 0/1 * * * ?"></property>
-        &lt;!&ndash;<property name="startDelay" value="3000"></property>&ndash;&gt;
+        <!--<property name="startDelay" value="3000"></property>-->
     </bean>
 
     <bean id="schedulerFactoryBean"  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -32,6 +32,6 @@
                  <ref bean="userCheckJobTrigger"/>
             </list>
         </property>
-    </bean>-->
+    </bean>
 
 </beans>  

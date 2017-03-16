@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc   
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop   
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx   
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+    <!-- 分片池 begin   
+    Redis在3.x版本前是不支持服务端集群的，所以Jedis通过采用一致性哈稀分片算法（Shard），将不同的key分配到不同的redis server上，以达到横向扩展的目的。-->
+    <!-- 连接池配置  最大连接数 最大空闲数  最长等待时间 连接是否可用-->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxActive}" />
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}" />
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+        <property name="testOnReturn" value="${redis.testOnReturn}" />
+        <property name="blockWhenExhausted" value="${redis.blockWhenExhausted}" />
+    </bean>
+    <bean id="jedisShardInfo1" class="redis.clients.jedis.JedisShardInfo">
+        <constructor-arg index="0" value="${redis.host}" />
+        <constructor-arg index="1" value="${redis.port}" type="int" />
+        <constructor-arg index="2" value="${redis.instance}"/>
+    </bean>
+    <!--<bean id="jedisShardInfo2" class="redis.clients.jedis.JedisShardInfo">
+        <constructor-arg index="0" value="${redis.host2}" />
+        <constructor-arg index="1" value="${redis.port2}" type="int"/>
+        <constructor-arg index="2" value="${redis.instance2}"/>
+    </bean>
+    <bean id="jedisShardInfo3" class="redis.clients.jedis.JedisShardInfo">
+        <constructor-arg index="0" value="${redis.host3}" />
+        <constructor-arg index="1" value="${redis.port3}" type="int"/>
+        <constructor-arg index="2" value="${redis.instance3}"/>
+    </bean>-->
+    <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+        <constructor-arg index="0" ref="jedisPoolConfig" />
+        <constructor-arg index="1">
+            <list>
+                <ref bean="jedisShardInfo1"/>
+                <!--<ref bean="jedisShardInfo2"/>
+                <ref bean="jedisShardInfo3"/>-->
+            </list>
+        </constructor-arg>
+    </bean>
+    <!--同步sentinel的信息，将主从信息同步到客户端来-->
+    <!--<bean class="redis.clients.jedis.JedisSentinelPool">
+        <constructor-arg index="0" value="mymaster"/>
+        <constructor-arg index="1">
+            <set>
+                <value>${redis.sentinel.host}</value>
+            </set>
+        </constructor-arg>
+        <constructor-arg index="2" ref="jedisPoolConfig"/>
+    </bean>-->
+    <!-- 分片池 end -->
+
+</beans> 
