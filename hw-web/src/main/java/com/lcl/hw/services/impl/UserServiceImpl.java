@@ -1,7 +1,7 @@
 package com.lcl.hw.services.impl;
 
-import com.lcl.hw.domain.Register;
-import com.lcl.hw.mapper.RegisterMapper;
+import com.lcl.hw.domain.UserInfo;
+import com.lcl.hw.mapper.UserInfoMapper;
 import com.lcl.hw.services.UserService;
 import com.lcl.hw.utils.RetObj;
 import org.slf4j.Logger;
@@ -16,18 +16,18 @@ import javax.annotation.Resource;
 @Service
 public class UserServiceImpl implements UserService {
     @Resource
-    private RegisterMapper registerMapper;
+    private UserInfoMapper userInfoMapper;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
-    public RetObj login(Register register) throws Exception {
+    public RetObj login(UserInfo userInfo) throws Exception {
 
-        Register user = registerMapper.findByLoginid(register.getLoginid());
+        UserInfo user = userInfoMapper.findByUserId(userInfo.getUser_id());
         RetObj retObj = new RetObj();
         if(user == null){
             retObj.setMessage("用户不存在！");
             retObj.setSuccess(false);
             logger.info("用户不存在！");
-        }else if(user.getPassword().equals(register.getPassword())){//密码验证通过
+        }else if(user.getUser_pwd().equals(userInfo.getUser_pwd())){//密码验证通过
             retObj.setMessage("密码验证通过！");
             retObj.setSuccess(true);
             retObj.setResult(user);

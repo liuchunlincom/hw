@@ -1,6 +1,6 @@
 package com.lcl.hw.controller;
 
-import com.lcl.hw.domain.Register;
+import com.lcl.hw.domain.UserInfo;
 import com.lcl.hw.services.UserService;
 import com.lcl.hw.utils.RetObj;
 import com.lcl.hw.utils.UserUtils;
@@ -30,13 +30,14 @@ public class UserController {
 
     @RequestMapping(value={"","login"})
     @ResponseBody
-    public RetObj login(Register register,Model model){
-        String pw = register.getPassword();
+    public RetObj login(UserInfo userInfo,Model model){
+        userInfo.getUser_id();
+        userInfo.getUser_pwd();
         RetObj retObj = new RetObj();
         try {
-            retObj = userService.login(register);
+            retObj = userService.login(userInfo);
             if(retObj!=null && retObj.isSuccess()){
-                userUtils.setHttpUserSession((Register)retObj.getResult());
+                userUtils.setHttpUserSession((UserInfo)retObj.getResult());
             }
         } catch (Exception e) {
             retObj.setSuccess(false);

@@ -4,10 +4,13 @@ import com.lcl.hw.utils.RedisUtil;
 import com.lcl.hw.utils.RetObj;
 import com.lcl.hw.utils.ValidateCodeUtil;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.ShardedJedis;
+import redis.clients.jedis.ShardedJedisPool;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -28,6 +31,8 @@ public class ValidateCodeController {
     private ValidateCodeUtil validateCodeUtil;
     @Resource
     private RedisUtil redisUtil;
+    @Autowired
+    private ShardedJedisPool shardedJedisPool;
 
     private Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
     @RequestMapping("/getValidateCode")
@@ -36,9 +41,8 @@ public class ValidateCodeController {
         String ip = request.getRemoteAddr();
         if(map!=null){
             String code = (String)map.get("code");
-            Jedis jedis = redisUtil.getJedis();
-            jedis.append("valid_"+ip,code);
-            redisUtil.returnResource(jedis);
+            ShardedJedis shardedJedis = shardedJedisPool.getResource();
+            shardedJedis.append("valid_"+ip,code);
         }
         BufferedImage bufferedImage = (BufferedImage)map.get("pic");
         // 禁止图像缓存。

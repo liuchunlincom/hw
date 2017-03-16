@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcl.hw.mapper.UserInfoMapper">
+    <resultMap id="userInfoMap" type="com.lcl.hw.domain.UserInfo">
+        <id property="user_id" column="user_id"/>
+        <result property="user_name" column="user_name"/>
+        <result property="user_pwd" column="user_pwd"/>
+        <result property="user_sex" column="user_sex"/>
+        <result property="user_pwd" column="user_pwd"/>
+        <result property="user_tel" column="user_tel"/>
+        <association property="department" column="user_dept_id" javaType="com.lcl.hw.domain.Department">
+            <id property="id" column="dept_id"/>
+            <result property="name" column="name"/>
+        </association>
+        <!-- ofType指定UserInfo集合中的对象类型 -->
+        <collection property="jobInfos" ofType="com.lcl.hw.domain.JobInfo">
+            <id property="id" column="job_id"/>
+            <result property="name" column="s_name"/>
+        </collection>
+    </resultMap>
+    <select id="findByUserId" resultMap="userInfoMap">
+        SELECT U.*,DEPT.* FROM USERINFO U
+        LEFT JOIN DEPARTMENT DEPT ON U.USER_DEPT_ID = DEPT.DEPT_ID
+        WHERE U.USER_ID = #{userId}
+    </select>
+</mapper>
