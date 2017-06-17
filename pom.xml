@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>hw-web</module>
-        <module>hw-services</module>
         <module>hw-cached</module>
         <module>hw-core</module>
         <module>hw-utils</module>
@@ -72,7 +71,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -83,18 +81,11 @@
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.2</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.32</version>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/oracle/ojdbc14 -->
-        <!--<dependency>
-            <groupId>ojdbc</groupId>
-            <artifactId>ojdbc</artifactId>
-            <version>${ojdbc.version}</version>
-            <scope>compile</scope>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
@@ -153,12 +144,40 @@
             <version>1.2</version>
         </dependency>
 
+       <!-- <dependency>
+            <groupId>org.jasig.cas.client</groupId>
+            <artifactId>cas-client-core</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.cas</groupId>
+            <artifactId>cas-server-core</artifactId>
+            <version>4.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.cas</groupId>
+            <artifactId>cas-server-core-authentication</artifactId>
+            <version>4.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.cas</groupId>
+            <artifactId>cas-server-core-util</artifactId>
+            <version>4.2.7</version>
+        </dependency>-->
+
+
+
     </dependencies>
     <!--</dependencyManagement>-->
     <build>
         <!--<finalName>hw</finalName>-->
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.2.1.v20140609</version>
+                </plugin>
                 <!--mybatis 逆向工程插件-->
                 <plugin>
                     <groupId>org.mybatis.generator</groupId>
@@ -196,7 +215,7 @@
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.7</version>
                     <configuration>
-                        <uniqueVersion>false</uniqueVersion>
+                        <uniqueVersion>true</uniqueVersion>
                     </configuration>
                 </plugin>
             </plugins>

@@ -33,10 +33,23 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+    <!--<filter>
+        <filter-name>loginFitler</filter-name>
+        <filter-class>com.lcl.hw.utils.filter.loginFitler</filter-class>
+        <init-param>
+            <param-name>excludedPages</param-name>
+            <param-value>/login/toLogin,/validateCode/getValidateCode,/favicon.ico</param-value>
+        </init-param>
+    </filter>-->
+
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--<filter-mapping>
+        <filter-name>loginFitler</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
 
     <!-- Spring开启上下文 -->
     <listener>

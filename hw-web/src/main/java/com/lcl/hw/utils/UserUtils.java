@@ -1,6 +1,6 @@
 package com.lcl.hw.utils;
 
-import com.lcl.hw.domain.Register;
+import com.lcl.hw.domain.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -73,20 +73,20 @@ public class UserUtils {
      * 获取当前登录用户信息
      * @return
      */
-    public Register getHttpUserSession(){
+    public UserInfo getHttpUserSession(){
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         if(servletRequestAttributes == null){
             return null;
         }
         HttpServletRequest request = servletRequestAttributes.getRequest();
-        return (Register) request.getSession().getAttribute(Constants.AGENT_SESSION);
+        return (UserInfo) request.getSession().getAttribute(Constants.AGENT_SESSION);
     }
 
     /**
      * 登录用户信息存入会话中
      * @return
      */
-    public boolean setHttpUserSession(Register register){
+    public boolean setHttpUserSession(UserInfo userInfo){
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         if(servletRequestAttributes == null){
             logger.error("获取会话信息失败，无法缓存当前用户登录信息");
@@ -94,9 +94,9 @@ public class UserUtils {
         }
 
         HttpServletRequest request = servletRequestAttributes.getRequest();
-        request.getSession().setAttribute(Constants.AGENT_SESSION, register);
-        request.getSession().setAttribute("loginTime_"+register.getLoginid(),new Date());
-        logger.info("当前用户登录信息已缓存："+register.toString());
+        request.getSession().setAttribute(Constants.AGENT_SESSION, userInfo);
+        request.getSession().setAttribute("loginTime_"+userInfo.getUserid(),new Date());
+        logger.info("当前用户登录信息已缓存："+userInfo.toString());
         return true;
     }
 }

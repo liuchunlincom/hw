@@ -16,14 +16,9 @@
 
     <dependencies>
         <!--<dependency>
-            <groupId>com.lcl.hw</groupId>
-            <artifactId>hw-web</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>com.lcl.hw</groupId>
-            <artifactId>hw-services</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.6.0.RELEASE</version>
         </dependency>-->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -35,11 +30,10 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.5.2</version>
         </dependency>
-        <!--<dependency>
+       <!-- <dependency>
             <groupId>ojdbc</groupId>
             <artifactId>ojdbc</artifactId>
             <version>${ojdbc.version}</version>
-            <scope>compile</scope>
         </dependency>-->
         <!-- json -->
         <dependency>
@@ -86,5 +80,4 @@
     <build>
         <finalName>hw-web</finalName>
     </build>
-
 </project>

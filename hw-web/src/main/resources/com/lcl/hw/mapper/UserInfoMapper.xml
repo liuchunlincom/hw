@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lcl.hw.mapper.UserInfoMapper">
-    <resultMap id="userInfoMap" type="com.lcl.hw.domain.UserInfo">
+    <!--<resultMap id="userInfoMap" type="com.lcl.hw.domain.UserInfo">
         <id property="user_id" column="user_id"/>
         <result property="user_name" column="user_name"/>
         <result property="user_pwd" column="user_pwd"/>
@@ -13,15 +13,17 @@
             <id property="id" column="dept_id"/>
             <result property="name" column="name"/>
         </association>
-        <!-- ofType指定UserInfo集合中的对象类型 -->
+        &lt;!&ndash; ofType指定UserInfo集合中的对象类型 &ndash;&gt;
         <collection property="jobInfos" ofType="com.lcl.hw.domain.JobInfo">
             <id property="id" column="job_id"/>
             <result property="name" column="s_name"/>
         </collection>
-    </resultMap>
-    <select id="findByUserId" resultMap="userInfoMap">
-        SELECT U.*,DEPT.* FROM USERINFO U
-        LEFT JOIN DEPARTMENT DEPT ON U.USER_DEPT_ID = DEPT.DEPT_ID
-        WHERE U.USER_ID = #{userId}
+    </resultMap>-->
+    <select id="findByUserId" resultType="UserInfo">
+        SELECT  FROM USERINFO A
+        LEFT JOIN USER_ROLE_MAP B ON A.USERID = B.USERID
+        LEFT JOIN ROLEINFO C ON ON B.ROLEID = C.ID
+        WHERE A.USERID=#{userid}
+
     </select>
 </mapper>

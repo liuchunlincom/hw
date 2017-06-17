@@ -21,13 +21,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public RetObj login(UserInfo userInfo) throws Exception {
 
-        UserInfo user = userInfoMapper.findByUserId(userInfo.getUser_id());
+        UserInfo user = userInfoMapper.findByUserId(userInfo.getUserid());
         RetObj retObj = new RetObj();
         if(user == null){
             retObj.setMessage("用户不存在！");
             retObj.setSuccess(false);
             logger.info("用户不存在！");
-        }else if(user.getUser_pwd().equals(userInfo.getUser_pwd())){//密码验证通过
+        }else if(user.getPassword().equals(userInfo.getPassword())){//密码验证通过
             retObj.setMessage("密码验证通过！");
             retObj.setSuccess(true);
             retObj.setResult(user);

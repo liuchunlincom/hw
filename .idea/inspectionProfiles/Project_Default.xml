@@ -7,6 +7,7 @@
       <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
     </inspection_tool>
     <inspection_tool class="MavenModelInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ServletWithoutMappingInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SpringJavaAutowiringInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SpringModelInspection" enabled="true" level="WARNING" enabled_by_default="true" />
   </profile>

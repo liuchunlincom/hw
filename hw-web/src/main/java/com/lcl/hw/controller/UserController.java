@@ -31,8 +31,6 @@ public class UserController {
     @RequestMapping(value={"","login"})
     @ResponseBody
     public RetObj login(UserInfo userInfo,Model model){
-        userInfo.getUser_id();
-        userInfo.getUser_pwd();
         RetObj retObj = new RetObj();
         try {
             retObj = userService.login(userInfo);

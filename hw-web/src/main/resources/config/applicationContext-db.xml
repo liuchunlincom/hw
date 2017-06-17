@@ -16,7 +16,7 @@
         <!--<property name="location" value="classpath:config/oracle.properties" />-->
         <property name="locations">
             <list>
-                <value>classpath:config/oracle.properties</value>
+                <value>classpath:config/db.properties</value>
                 <value>classpath:config/log.properties</value>
                 <value>classpath:config/redis.properties</value>
             </list>

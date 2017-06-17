@@ -4,9 +4,22 @@ package com.lcl.hw.utils;
  * Created by Rain on 2016/12/27 17:19.
  */
 public class RetObj {
-    private String message;
+    //查询是否成功标志
     private boolean isSuccess;
+    //返回前台成功/失败提示信息
+    private String message;
+    //原始异常信息
+    private String exceptionMsg;
+    //返回结果
     private Object result;
+
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+
+    public void setSuccess(boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
 
     public String getMessage() {
         return message;
@@ -16,12 +29,12 @@ public class RetObj {
         this.message = message;
     }
 
-    public boolean isSuccess() {
-        return isSuccess;
+    public String getExceptionMsg() {
+        return exceptionMsg;
     }
 
-    public void setSuccess(boolean isSuccess) {
-        this.isSuccess = isSuccess;
+    public void setExceptionMsg(String exceptionMsg) {
+        this.exceptionMsg = exceptionMsg;
     }
 
     public Object getResult() {
@@ -35,8 +48,9 @@ public class RetObj {
     @Override
     public String toString() {
         return "RetObj{" +
-                "message='" + message + '\'' +
-                ", isSuccess=" + isSuccess +
+                "isSuccess=" + isSuccess +
+                ", message='" + message + '\'' +
+                ", exceptionMsg='" + exceptionMsg + '\'' +
                 ", result=" + result +
                 '}';
     }
